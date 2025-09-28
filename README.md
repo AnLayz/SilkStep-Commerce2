@@ -1,50 +1,67 @@
-# SilkStep Commerce 
-## Company & role
+# SilkStep Commerce — Analytics Platform
+
+## Company & Role
 I work as a **Data Analyst** at **SilkStep Commerce**, a mid-size Central Asian e-commerce marketplace connecting customers with vetted third-party sellers (electronics, home & living, beauty, apparel).
 
-## Project overview
-This repository contains a PostgreSQL analytics setup for SilkStep Commerce.  
-It imports raw CSVs into a relational schema, validates structures (types, PK/FK), runs baseline SQL checks (LIMIT, WHERE+ORDER BY, GROUP BY, JOIN), provides 10 analytical SQL queries (`queries.sql`), and includes a small Python script (`main.py`) that connects to the DB and prints results to the terminal.
+## Project Overview
+This repository contains the PostgreSQL-based analytics environment used at SilkStep Commerce.  
+It covers the full pipeline:
 
-## Main analytics (screenshot)
-
-![Main analytics](images/main-analytics.png)
+- Importing raw marketplace CSVs into a relational schema  
+- Running validation checks (PK/FK constraints, data types)  
+- Writing SQL queries to answer key business questions  
+- Building Python-powered reporting with static charts, interactive visualizations, and Excel exports for stakeholders  
 
 ---
 
-## ER diagram
+## Main Analytics (screenshot)
+
+![Main analytics](01_pie_revenue_by_category.png) 
+[](02_bar_top_sellers_by_revenue.png)
+[](03_barh_avg_review_by_category.png)
+
+## ER Diagram
 
 ![ER Diagram](er/er-diagram.png)
 
-## How to run (step-by-step)
+---
 
-### Requirements
-- PostgreSQL running locally 
-- Python 3.8+
-
-## Tools & resources
-- PostgreSQL + psql
-- Python: psycopg2-binary, tabulate
-- (optional) Apache Superset (dashboards)
-- (optional) dbdiagram.io / Mermaid (ER diagram)
 ## Dataset
+Internal SilkStep order, CRM and logistics data (structured similar to the public Fecom dataset on Kaggle).  
+Contains customers, orders, order items, sellers, payments, reviews, and geolocation information.
 
-This project uses the **Fecom Inc — E-com Marketplace Orders & CRM** dataset from Kaggle:
+---
 
-- **Kaggle page:**  
-  https://www.kaggle.com/datasets/cemeraan/fecom-inc-e-com-marketplace-orders-data-crm
+## Key Analytics & Deliverables
 
+### SQL Business Queries
+Every SQL query combines multiple tables with **2+ JOINs** to reflect real business questions rather than just IDs. Examples:
 
+- **Revenue share by product category**  
+- **Top sellers by delivered revenue**  
+- **Average review scores by category (with thresholds)**  
+- **Daily delivered revenue trends**  
+- **Distribution of order values**  
+- **Price vs. review correlation at product level**  
+- **Monthly revenue by country**
 
-### Create DB and apply schema (psql)
-```sql
--- inside psql
-CREATE DATABASE fecomdb; \c fecomdb
-\i 'C:/fecom-assignment1/schema.sql'
--- quick visibility check after you import CSVs:
-SELECT * FROM orders LIMIT 10;
+### Static Reporting (matplotlib)
+- Pie, bar, horizontal bar, line, histogram, scatter plots  
+- All charts saved to `/charts/`  
+- Each chart has clear **title, axis labels, legend (if applicable)**  
+- Console output summarises row counts and purpose of each chart  
 
+### Interactive Reporting (Plotly)
+- Monthly revenue by country with a **time slider** (`animation_frame="month"`)  
+- Opens in browser as an HTML dashboard (`charts/timeslider_revenue_by_country.html`)  
+- Used in stakeholder demos to interactively explore revenue trends  
 
-
-
-
+### Excel Exports (openpyxl)
+- All DataFrames exported to `/exports/`  
+- **Formatting included:**  
+  - Frozen headers and first column  
+  - Filters on all columns  
+  - Conditional formatting (gradient min→mid→max)  
+- Console log example:  
+  ```text
+  Created file analytics_export.xlsx, 6 sheets, 1234 rows
