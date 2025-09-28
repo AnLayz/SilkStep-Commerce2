@@ -16,9 +16,9 @@ It covers the full pipeline:
 
 ## Main Analytics (screenshot)
 
-![Main analytics](01_pie_revenue_by_category.png) 
-[](02_bar_top_sellers_by_revenue.png)
-[](03_barh_avg_review_by_category.png)
+![Main analytics](images/01_pie_revenue_by_category.png) 
+[](images/02_bar_top_sellers_by_revenue.png)
+[](images/03_barh_avg_review_by_category.png)
 
 ## ER Diagram
 
@@ -65,3 +65,4 @@ Every SQL query combines multiple tables with **2+ JOINs** to reflect real busin
 - Console log example:  
   ```text
   Created file analytics_export.xlsx, 6 sheets, 1234 rows
+
