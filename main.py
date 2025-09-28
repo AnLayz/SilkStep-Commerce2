@@ -7,7 +7,7 @@ try:
 except Exception:
     tabulate = None
 
-# ВАЖНО: порядок выполнения сохраняем явно через список кортежей
+
 QUERIES = [
     # ---- БАЗОВЫЕ ПРОВЕРКИ (4b) ----
     ("B1_LIMIT10",
@@ -238,3 +238,4 @@ if __name__ == "__main__":
         main()
     except KeyboardInterrupt:
         sys.exit(130)
+
