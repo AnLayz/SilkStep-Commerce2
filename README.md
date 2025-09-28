@@ -132,23 +132,7 @@ Regenerate the chart → the new point immediately appears.
 
 This workflow builds trust with stakeholders by showing that dashboards update directly from transactions.
 
-Example demo script (safe transaction + rollback):
 
-BEGIN;
-
-INSERT INTO orders (order_id, customer_trx_id, order_status, order_purchase_timestamp)
-VALUES ('demo_order_001', (SELECT customer_trx_id FROM customers LIMIT 1), 'delivered', NOW());
-
-INSERT INTO order_items (order_id, order_item_id, product_id, seller_id, price)
-VALUES ('demo_order_001', 1, (SELECT product_id FROM products LIMIT 1),
-        (SELECT seller_id FROM sellers LIMIT 1), 99.90);
-
-INSERT INTO order_reviews (review_id, order_id, review_score, review_creation_date)
-VALUES ('demo_review_001', 'demo_order_001', 5, NOW());
-
--- regenerate chart here
-
-ROLLBACK;
 
 Technical Stack
 
@@ -166,3 +150,4 @@ openpyxl — Excel exports with corporate formatting
 
 All charts follow a consistent style: titles, axis labels, readable scales, and legends where appropriate.
 Outliers are capped at the 99th percentile for clarity.
+
