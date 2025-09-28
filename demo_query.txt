@@ -1,0 +1,14 @@
+INSERT INTO orders (order_id, customer_trx_id, order_status, order_purchase_timestamp)
+VALUES ('demo_order_001', (SELECT customer_trx_id FROM customers LIMIT 1), 'delivered', NOW());
+
+INSERT INTO order_items (order_id, order_item_id, product_id, seller_id, price)
+VALUES (
+  'demo_order_001', 1,
+  (SELECT product_id FROM products  LIMIT 1),
+  (SELECT seller_id  FROM sellers   LIMIT 1),
+  99.90
+);
+
+
+INSERT INTO order_reviews (review_id, order_id, review_score, review_creation_date)
+VALUES ('demo_review_001', 'demo_order_001', 5, NOW());

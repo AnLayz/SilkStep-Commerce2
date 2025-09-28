@@ -1,0 +1,15 @@
+BEGIN;
+
+
+DELETE FROM order_payments WHERE order_id = 'demo_order_001';
+
+
+DELETE FROM order_reviews WHERE review_id = 'demo_review_001';
+
+
+DELETE FROM order_items  WHERE order_id  = 'demo_order_001';
+
+
+DELETE FROM orders       WHERE order_id  = 'demo_order_001';
+
+COMMIT;

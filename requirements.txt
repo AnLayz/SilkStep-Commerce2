@@ -1,0 +1,8 @@
+pandas
+matplotlib
+plotly
+SQLAlchemy
+openpyxl
+psycopg2-binary; platform_system != "Windows"
+psycopg2; platform_system == "Windows"
+PyMySQL
